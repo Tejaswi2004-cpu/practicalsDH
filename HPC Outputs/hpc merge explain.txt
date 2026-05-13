@@ -1,0 +1,72 @@
+
+
+---
+
+**"Sir, what is the aim of this practical?"**
+
+> This practical implements Sequential and Parallel Merge Sort and compares their execution time.
+
+---
+
+**"Explain the code in short."**
+
+> We take an array as input. We copy it into two arrays — one for sequential sort, one for parallel sort. We run both, measure time using `time.time()`, and print sorted output with time in milliseconds.
+
+---
+
+**"How does Merge Sort work?"**
+
+> It follows Divide and Conquer — divide array at midpoint, recursively sort left half and right half, then merge both sorted halves into one. Time complexity is O(n log n).
+
+---
+
+**"Explain the merge() function."**
+
+> It takes left and right sorted halves, compares elements one by one using two pointers i and j, picks the smaller one into the original array, and copies any remaining elements at the end.
+
+---
+
+**"How is parallelism achieved?"**
+
+> In `parallel_merge_sort`, both halves are submitted to `ThreadPoolExecutor` simultaneously using `executor.submit()`. Left half and right half are independent, so they sort at the same time. After both finish, `merge()` combines them.
+
+---
+
+**"What is ThreadPoolExecutor?"**
+
+> It is a class from Python's `concurrent.futures` module that manages a pool of threads. `executor.submit()` runs a function in a separate thread without manually creating threads.
+
+---
+
+**"What is the difference between submit() and map()?"**
+
+> `submit()` runs one task and returns a Future object. `map()` runs a function on multiple items in parallel. Here we use `submit()` because we have two specific recursive calls — left half and right half.
+
+---
+
+**"Why does parallel sort sometimes run slower?"**
+
+> Because Python has the GIL — Global Interpreter Lock — which prevents true parallel CPU execution. Also, creating new threads for every recursive call has overhead. For small arrays, this overhead is more than the benefit.
+
+---
+
+**"What is the time complexity?"**
+
+> Sequential: O(n log n) in all cases. Parallel with unlimited processors: O(log² n). But in Python due to GIL, actual speedup is limited.
+
+---
+
+**"Is Merge Sort stable?"**
+
+> Yes. We use `L[i] <= R[j]` — equal elements from left half are placed first, so relative order of equal elements is preserved.
+
+---
+
+**"Why copy the array before sorting?"**
+
+> Because merge sort modifies the array in place during merging. If we used the same array, the sequential sort would already sort it before parallel sort runs — comparison would be invalid.
+
+---
+
+**One-line summary you can say at start:**
+> *"Sir, this practical shows merge sort in two ways — sequential using simple recursion, and parallel using ThreadPoolExecutor where both halves sort simultaneously. We compare their time and print the sorted output."*

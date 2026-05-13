@@ -1,0 +1,9 @@
+1. Design & implement parallel BFS based on existing algorithm using OpenMP. Use tree or 
+undirected graph for BFS
+2. Design & implement parallel DFS based on existing algorithm using OpenMP. Use tree or 
+undirected graph for DFS
+3. Write a program to implement parallel merge sort. Use existing algorithm and measure 
+the performance of sequential and parallel algorithm 
+4. Write a program to implement parallel bubble sort. Use existing algorithm and measure 
+the performance of sequential and parallel algorithm
+5. Implement min, max, sum and average operations using parallel reduction 

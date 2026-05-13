@@ -1,0 +1,14 @@
+"Sir/Ma'am, our project is on Gender and Age Detection Using Deep Learning."
+The idea is simple — given a face image or live webcam feed, our system automatically detects the person's gender (Male/Female) and approximate age group in real-time.
+How it works — step by step:
+First, the input image is passed through a Face Detector — we used an SSD model with ResNet-10 backbone, loaded via OpenCV's DNN module. It draws a bounding box around every face it finds.
+Then for each detected face, we extract that region and pass it through two separate pre-trained CNN models — both are Caffe-based models trained on the Adience dataset:
+
+The Gender model gives a probability for Male or Female
+The Age model gives probabilities across 8 age groups — like (0-2), (4-6), (8-12), (25-32), up to (60-100)
+
+The label with the highest probability is selected and displayed on the image as an overlay — like "Female, (25-32)"
+Key point — we did not train any model from scratch. We used pre-trained weights, which saved time and computational resources. This is called transfer learning / inference.
+The entire project is built in Python using Jupyter Notebook with OpenCV, NumPy, and Matplotlib.
+Results: Gender accuracy was above 90% under normal lighting. Webcam ran at 25-30 FPS on a standard laptop without GPU.
+Limitation: Age is predicted as a range, not exact value. Accuracy drops in poor lighting or side-angle faces.

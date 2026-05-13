@@ -1,0 +1,17 @@
+"Sir/Ma'am, our project is on Parallel Quicksort using MPI."
+Quicksort is a fast sorting algorithm with O(n log n) average complexity, but for large datasets, sequential execution becomes slow. To solve this, we used MPI — Message Passing Interface — to distribute the work across multiple processes running simultaneously.
+
+
+How it works:
+
+The master process (rank 0) takes input from the user
+MPI_Scatter is used to distribute the data — it splits the array into equal chunks and sends one chunk to each process. For example, if we have 8 elements and 4 processes, each process gets 2 elements.
+Each process then independently sorts its own chunk using Quicksort — this is where parallel execution happens
+MPI_Gather is used to collect results — it brings back all the sorted chunks from every process back to the master
+Finally, the master performs one last Quicksort on the full gathered data and displays the sorted output
+
+So in simple terms — Scatter = distribute, Gather = collect.
+Key benefits are reduced execution time, better CPU utilization, and scalability.
+Main challenges are communication overhead and load balancing. If the number of elements is not divisible by number of processes, the program throws an error and aborts.
+We used C++ with MS-MPI on Windows, compiled with G++, and ran using mpiexec -n 4.
+Input 8 3 7 4 9 2 6 5 → Output 2 3 4 5 6 7 8 9 ✅
