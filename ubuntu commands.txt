@@ -1,0 +1,13 @@
+Jupyter notebook
+
+1. sudo apt update
+2. sudo apt install python3-pip -y
+3. pip3 install notebook --break-system-packages
+4. jupyter notebook
+
+
+Notepad la progfam type karaicha manu 
+To deaktop la save karaicha
+Mg cmd open karaucha 
+Mg cd desktop karaicha
+Mg python3 filename.py
